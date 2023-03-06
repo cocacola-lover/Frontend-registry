@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "../components/Header/";
 import FirstInfo from "../components/FirstInfo/";
 import ClinicCard from "../components/ClinicCard/";
+import TextInputFormComponent, {InputFieldType} from "../components/TextInputFormComponent";
 
 export default function Home() {
   return (
@@ -12,9 +13,67 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-
+      {/*
       <FirstInfo />
       <ClinicCard />
+      */}
+      
+      <form style={{width : '100%', height: '50vh', display : 'flex', flexDirection : 'column'}}>
+        <div style={{width : '100%', flex : 1}}>
+          <TextInputFormComponent
+            label={'Имя юридического/физического лица'}
+            id={'Employer_name'}
+            placeholder={'Иванов Иван Владимирович'}
+            type={InputFieldType.Text}
+            required
+          />
+        </div>
+        <div style={{width : '100%', flex : 1}}>
+          <TextInputFormComponent
+            label={'Почта для связи'}
+            id={'Employer_email'}
+            placeholder={'example@supermail.com'}
+            type={InputFieldType.Email}
+            required
+          />
+        </div>
+        <div style={{width : '100%', flex : 1}}>
+          <TextInputFormComponent
+            label={'Номер телефона'}
+            id={'Employer_phone'}
+            placeholder={'81234567890'}
+            type={InputFieldType.PhoneNumber}
+            required
+          />
+        </div>
+        <div style={{width : '100%', flex : 2}}>
+          <TextInputFormComponent
+            label={'Краткая идея проекта'}
+            id={'Employer_idea'}
+            placeholder={'Хочу летающие машины'}
+            type={InputFieldType.Area}
+            required
+          />
+        </div>
+        <div style={{width : '100%', flex : 4}}>
+          <TextInputFormComponent
+            label={'Описание проекта'}
+            id={'Employer_project_description'}
+            placeholder={'Хочу прям такие крутящиеся летающие машины, которые пи-пи-пиу'}
+            type={InputFieldType.Area}
+            required vertical
+          />
+        </div>
+        <div style={{width : '100%', flex : 1}}>
+          <TextInputFormComponent
+            label={'Другие способы связи'}
+            id={'Employer_contacts'}
+            placeholder={'Мой второй телефон, моя мама...'}
+            type={InputFieldType.Text}
+          />
+        </div>
+        <button type="submit">submit</button>
+      </form>
     </div>
   );
 }
