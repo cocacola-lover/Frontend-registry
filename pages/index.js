@@ -13,10 +13,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {/*
       <FirstInfo />
       <ClinicCard />
-      */}
       
       <form style={{width : '100%', height: '50vh', display : 'flex', flexDirection : 'column'}}>
         <div style={{width : '100%', flex : 1}}>
