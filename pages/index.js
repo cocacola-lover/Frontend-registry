@@ -2,6 +2,10 @@ import Head from "next/head";
 import Header from "../components/Header/";
 import FirstInfo from "../components/FirstInfo/";
 import ClinicCard from "../components/ClinicCard/";
+import Taglist from "../components/Taglist";
+import Container from "../components/Container";
+import ForClient from "../components/ForClient"
+import Footer from "../components/Footer"
 import TextInputFormComponent, {InputFieldType} from "../components/TextInputFormComponent";
 
 export default function Home() {
@@ -13,8 +17,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <Container>
+        <Taglist />
+      </Container>
       <FirstInfo />
       <ClinicCard />
+        <ForClient />
+        <Footer />
       
       <form style={{width : '100%', height: '50vh', display : 'flex', flexDirection : 'column'}}>
         <div style={{width : '100%', flex : 1}}>
