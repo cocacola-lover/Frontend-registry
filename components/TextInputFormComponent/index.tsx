@@ -1,12 +1,11 @@
-import styles from "./TextInputFormComponent.module.scss";
 
 import {
-  TextInputField,
-  NumberInputField,
+  TextInputField, 
   EmailInputField,
+  NumberInputField,
   AreaInputField,
 } from "./FieldComponents";
-import { FC } from "react";
+
 /*
     This component was build to be reusable if needed. So please consider using if it fits in your component.
     Keep in mind most of validation happens on submit event only.
@@ -35,102 +34,37 @@ export enum InputFieldType {
   PhoneNumber = 4,
 }
 
-interface TextInputFormComponentProps {
-  id: string;
-  ratio?: number;
-  placeholder: string;
-  required?: boolean;
-  minLength?: number;
-  maxLength?: number;
-  name?: string;
-  vertical?: boolean;
-  label: string;
-  type: InputFieldType;
-}
+export default function TextInputFormComponent(props : TextInputFormComponentProps){
 
-const TextInputFormComponent: FC<TextInputFormComponentProps> = ({
-  id,
-  ratio = 1,
-  placeholder,
-  required,
-  minLength,
-  maxLength,
-  name,
-  vertical,
-  label,
-  type,
-}) => {
   function buildByType(type: InputFieldType) {
     switch (type) {
       case InputFieldType.Text:
-        return (
-          <TextInputField
-            id={id}
-            ratio={ratio}
-            placeholder={placeholder}
-            required={required}
-            minLength={minLength}
-            maxLength={maxLength}
-            name={name}
-          />
-        );
+        return <TextInputField id={props.id} placeholder={props.placeholder} validation={props.validation} name={props.name} setValue={props.setValue} inputStyling={props.styling}/>;
 
       case InputFieldType.Email:
-        return (
-          <EmailInputField
-            id={id}
-            ratio={ratio}
-            placeholder={placeholder}
-            required={required}
-            minLength={minLength}
-            maxLength={maxLength}
-            name={name}
-          />
-        );
+        return <EmailInputField id={props.id} placeholder={props.placeholder} validation={props.validation} name={props.name} setValue={props.setValue} inputStyling={props.styling}/>;
 
       case InputFieldType.PhoneNumber:
-        return (
-          <NumberInputField
-            id={id}
-            ratio={ratio}
-            placeholder={placeholder}
-            required={required}
-            minLength={minLength}
-            maxLength={maxLength}
-            name={name}
-          />
-        );
+        return <NumberInputField id={props.id} placeholder={props.placeholder} validation={props.validation} name={props.name} setValue={props.setValue} inputStyling={props.styling}/>;
 
       case InputFieldType.Area:
-        return (
-          <AreaInputField
-            id={id}
-            ratio={ratio}
-            placeholder={placeholder}
-            required={required}
-            maxLength={maxLength}
-            name={name}
-          />
-        );
+        return <AreaInputField id={props.id} placeholder={props.placeholder} validation={props.validation} name={props.name} setValue={props.setValue} inputStyling={props.styling}/>
     }
   }
 
-  const requiredClass = required ? styles.required : "";
-  const verticalClass = vertical ? styles.vertical : "";
+  const requiredClass = props.validation?.required ? props.styling?.Required : "";
 
   return (
-    <div className={`${styles.Devider} ${verticalClass}`}>
+    <div className={`${props.styling?.Devider}`}>
       <label
-        className={`${styles.Label} ${requiredClass}`}
-        htmlFor={id}
+        className={`${props.styling?.Label} ${requiredClass}`}
+        htmlFor={props.id}
         style={{ flex: 1 }}
       >
-        {label}
+        {props.label}
       </label>
 
-      {buildByType(type)}
+      {buildByType(props.type)}
     </div>
   );
 };
-
-export default TextInputFormComponent;
