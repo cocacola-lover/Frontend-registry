@@ -3,12 +3,24 @@ import { useEffect, useRef, useState } from "react";
 /*
   FORMS SHOUD USE NOVALIDATE
 */
+/*
+  Components that are used to get and validate input.
+  Both validation option and style can be customized.
+  This components shoud not be used by themselves but rather by using TextInputFormComponent meta components.
 
+  For styling purposes here is the blueprint of the components : 
+    <div className={ style.InputWrapper }>
+      <input or textarea className={style.Input and style.(Right or Wrong input)} />
+      <span className={style.InputError}>
+    </div>
+
+  Notice : Please be aware that component starts without RightorWrong input classname and sets it only on the first input.
+*/
 
 
 // Base Classs
 
-export function BasicInputField(props: BasicInputFieldProps): JSX.Element {
+function BasicInputField(props: BasicInputFieldProps) : JSX.Element {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -95,7 +107,7 @@ export function BasicInputField(props: BasicInputFieldProps): JSX.Element {
 
 // Extend BasicInputField
 
-export function TextInputField(props: ExtensionInputProps) {
+export function TextInputField(props: ExtensionInputProps) : JSX.Element {
 
   return (
     <BasicInputField
@@ -104,7 +116,7 @@ export function TextInputField(props: ExtensionInputProps) {
   );
 };
 
-export function EmailInputField(props: ExtensionInputProps) {
+export function EmailInputField(props: ExtensionInputProps) : JSX.Element {
 
   const additionalValidation: AdditionalValidation = (input, setError) =>
     input.validity.typeMismatch && setError("Please put a valid email address");
@@ -114,7 +126,7 @@ export function EmailInputField(props: ExtensionInputProps) {
   )
 };
 
-export function NumberInputField(props: ExtensionInputProps) {
+export function NumberInputField(props: ExtensionInputProps) : JSX.Element {
 
   const additionalValidation: AdditionalValidation = (input, setError) =>
     input.validity.patternMismatch && setError("Please put a valid phone number");
@@ -133,7 +145,7 @@ export function NumberInputField(props: ExtensionInputProps) {
 
 // Area Component
 
-export function AreaInputField(props: ExtensionInputProps) {
+export function AreaInputField(props: ExtensionInputProps) : JSX.Element {
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 

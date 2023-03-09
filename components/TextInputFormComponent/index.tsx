@@ -8,23 +8,22 @@ import {
 
 /*
     This component was build to be reusable if needed. So please consider using if it fits in your component.
-    Keep in mind most of validation happens on submit event only.
 
-    TextInputFormComponent props :
-    required : 
-        id : string - Every input shoud have a unique id,
-        label : string - Every input shoud have a label
-        type : InputFieldType - Type of input
-    optional : 
-        placeholder : string
-        required : boolean
-        vertical : boolean
+    If you are looking for props or interfaces please take a look in the interfaces.d.ts file.
 
-        ratio : number - describes ration of space between input and label
-        minLength : number
-        maxLength : number
+    This Input Component was build to provide custom style and validation with as minimal future code as possible.
 
-        name : string - for submitting form
+    For styling purposes here is the blueprint of the component : 
+    
+    <div className={ style.Devider }>
+      <label className={ style.Label and style.Required?}></label>
+      <div className={ style.InputWrapper }>
+        <input or textarea className={style.Input and style.(Right or Wrong input)} />
+        <span className={style.InputError}>
+      </div>
+    </div>
+
+  Notice : Please be aware that component starts without RightorWrong input classname and sets it only on the first input.
 */
 
 export enum InputFieldType {
@@ -59,7 +58,6 @@ export default function TextInputFormComponent(props : TextInputFormComponentPro
       <label
         className={`${props.styling?.Label} ${requiredClass}`}
         htmlFor={props.id}
-        style={{ flex: 1 }}
       >
         {props.label}
       </label>
